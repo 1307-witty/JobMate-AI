@@ -138,13 +138,12 @@ with tab5:
     jd = st.text_area("Paste Job Description")
 
     if st.button("Extract Skills"):
-       prompt = f"""
+        prompt = f"""
 You are an expert in parsing job descriptions. Extract 5 important and relevant technical or soft skills from the job description below.
 
-Job Description:{jd}
-
-Return the skills as a comma-separated list."""
-
-     with st.spinner("Extracting Skills..."):
+Job Description: {jd}
+Return the skills as a comma-separated list.
+"""
+        with st.spinner("Extracting Skills..."):
             result = generate_text(prompt, max_length=100)
             st.success(result)
