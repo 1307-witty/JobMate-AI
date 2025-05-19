@@ -145,6 +145,6 @@ Job Description:{jd}
 
 Return the skills as a comma-separated list."""
 
-        with st.spinner("Extracting Skills..."):
+     with st.spinner("Extracting Skills..."):
             result = generate_text(prompt, max_length=100)
             st.success(result)
