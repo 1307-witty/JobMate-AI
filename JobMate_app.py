@@ -96,7 +96,7 @@ Divide it into sections: Header, Summary, Skills, Projects, Education, Certifica
 with tab3:
     st.header("Generate Cover Letter")
     role = st.text_input("Target Role", key="role2")
-    university = st.text_input("Your Degree", key="university2")
+    university = st.text_input("Your university", key="university2")
     degree = st.text_input("Your Degree", key="degree2")
     skills = st.text_area("Your Skills", key="skills2")
     goals = st.text_area("Your Career Goals", key="goals2")
