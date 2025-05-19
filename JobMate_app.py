@@ -47,7 +47,17 @@ with tab1:
     skills = st.text_area("Skills (comma-separated)")
     goals = st.text_area("Career Goals")
     if st.button("Generate Summary"):
-        prompt = f"Act as an experienced HR who is teaching how to build ATS friendly resume to the both Technical cal Non Tecnical for {role}.\nuniversity: {university}\nDegree: {degree}\nExperience: {exp_level}\nSkills: {skills}\nCareer Goals: {goals}"
+        prompt = f"""
+You are an experienced HR consultant. Write a concise, professional resume summary for a candidate applying for the role of {role}.
+Include:
+- University: {university}
+- Degree: {degree}
+- Experience: {exp_display}
+- Skills: {skills}
+- Career Goals: {goals}
+
+Use strong action verbs and make it suitable for ATS systems. Avoid repetition and buzzwords."""
+
         with st.spinner("Generating Summary..."):
             result = generate_text(prompt, max_length=1000)
             st.success(result)
@@ -65,10 +75,20 @@ with tab2:
     certifications = st.text_area("Certifications (Optional)")
 
     if st.button("Generate Full Resume"):
-        prompt = f"""Act as an experienced HR professional who teaching how to build ATS friendly resume to the both Technical cal Non Tecnical and tailored in a way that would impress the interviewer for
+        prompt = f"""
+You are an expert in creating ATS-optimized resumes. Create a complete resume based on this data:
 
-        Full Name: {name} Email: {email} Phone Number: {phone} Degree: {degree} Experience: {experience} Skills: {skills} Career Objective: {career_goal} Projects: {projects} Certifications: {certifications}
-        Structure the resume with proper sections like Header, Summary, Skills, Projects, Education, Certifications, and Contact Info. Use professional formatting and make it ready to paste into a Word document or PDF.""" 
+Name: {name}
+Email: {email}
+Phone: {phone}
+Degree: {degree}
+Experience: {experience}
+Skills: {skills}
+Career Objective: {career_goal}
+Projects: {projects}
+Certifications: {certifications}
+Divide it into sections: Header, Summary, Skills, Projects, Education, Certifications, and Contact Info. Use professional formatting and make it suitable for a Word or PDF resume."""
+
         with st.spinner("Generating Resume..."):
             result = generate_text(prompt, max_length=600) 
             st.success(result)
@@ -82,9 +102,16 @@ with tab3:
     goals = st.text_area("Your Career Goals", key="goals2")
 
     if st.button("Generate Cover Letter"):
-        prompt = f"""Act as a experienced oxford university professor who is helping how to write a cover letter for students and fresher who are applying for {role} position.
-        Degree: {degree}. Skills: {skills}. Career Goals: {goals}.
-        The letter should be professional, enthusiastic, and persuasive."""
+        prompt = f"""
+You are an Oxford professor mentoring students on job applications. Write a compelling, structured cover letter for a fresher applying for the position of {role}.
+
+Details:
+- University: {university}
+- Degree: {degree}
+- Skills: {skills}
+- Career Goals: {goals}
+Make the tone confident and enthusiastic. Highlight the candidate's strengths and eagerness to contribute."""
+
         with st.spinner("Creating Cover Letter..."):
             result = generate_text(prompt, max_length=300)
             st.success(result)
@@ -94,7 +121,14 @@ with tab4:
     topic = st.text_input("Enter Interview Topic (e.g. Python, Data Structures, DBMS)")
     role = st.text_input("Enter Role:")
     if st.button("Generate Mock Q&A"):
-        prompt = f"Act as an Experienced Recruiter who is tutoring fresher and experienced candidate for the job they apply give the 15 most importance question that mabe asked as per their role and topic the user give. topic: {topic},role: {role}"
+        prompt = f"""
+You are an experienced recruiter preparing candidates for interviews. List 15 relevant and important interview questions and sample answers.
+
+Role: {role}
+Topic: {topic}
+
+Include a mix of basic and advanced questions with clear and short model answers. Focus on practical and technical relevance."""
+
         with st.spinner("Generating Interview Q&A..."):
             result = generate_text(prompt, max_length=700)
             st.success(result)
@@ -104,7 +138,13 @@ with tab5:
     jd = st.text_area("Paste Job Description")
 
     if st.button("Extract Skills"):
-        prompt = f"Extract 5 key skills from the following job description:\n{jd}"
+       prompt = f"""
+You are an expert in parsing job descriptions. Extract 5 important and relevant technical or soft skills from the job description below.
+
+Job Description:{jd}
+
+Return the skills as a comma-separated list."""
+
         with st.spinner("Extracting Skills..."):
             result = generate_text(prompt, max_length=100)
             st.success(result)
